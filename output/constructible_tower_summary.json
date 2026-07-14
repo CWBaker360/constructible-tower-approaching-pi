@@ -1,0 +1,17 @@
+{
+  "precision_dps": 650,
+  "levels": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30
+  ],
+  "table_values_passed": true,
+  "leading_error_model_passed": true,
+  "digit_ratio_monotone_decreasing": true,
+  "correct_asymptotic_limit": "0.30102999566398119521",
+  "previous_factor_two_limit_rejected": true,
+  "verification_passed": true
+}

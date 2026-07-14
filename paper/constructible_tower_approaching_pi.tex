@@ -1,0 +1,424 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[most]{tcolorbox}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\newtcolorbox{claimbox}[1]{
+  colback=gray!4,
+  colframe=black!65,
+  title=\textbf{#1},
+  fonttitle=\bfseries,
+  boxrule=0.6pt,
+  arc=1pt
+}
+
+\title{\textbf{A Constructible Tower Approaching \(\pi\)}\\
+\large Explicit Compass-and-Straightedge Approximants under Transparent Algebraic Acceleration}
+\author{C. Wayne Baker}
+\date{May 24, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We exhibit an explicit sequence of compass-and-straightedge constructible real
+numbers approaching the geometric circle constant \(\pi_g=\pi\), although the
+limit itself is nonconstructible. The base sequence is the Archimedean
+polygonal quantity
+\[
+P_N=N\sin\!\left(\frac{\pi}{N}\right)
+\]
+restricted to the doubling ladder \(N=4,8,16,\ldots\). Every finite term is a
+constructible length. These terms are combined by the rational extrapolation
+recurrence
+\[
+T_{i,j}
+=
+T_{i,j-1}
++
+\frac{T_{i,j-1}-T_{i-1,j-1}}{4^j-1},
+\]
+so every tableau entry remains constructible.
+
+The diagonal \(T_{i,i}\) has order increasing without bound. A direct
+interpolation analysis gives
+\[
+\pi-T_{i,i}
+\sim
+\frac{\pi^{2i+3}}{(2i+3)!}\,
+4^{-(i+1)(i+4)/2}.
+\]
+Consequently, with
+\[
+D(i)=-\log_{10}\lvert T_{i,i}-\pi\rvert,
+\]
+one has
+\[
+D(i)
+=
+(\log_{10}2)i^2
++
+2i\log_{10}i
++
+O(i),
+\qquad
+\frac{D(i)}{i^2}\longrightarrow \log_{10}2.
+\]
+The interest is not an arithmetic speed record: the acceleration is classical
+Richardson--Romberg extrapolation. The point is the explicit combination of
+field-theoretic constructibility, transparent rational acceleration, and
+unbounded-order approach to a nonconstructible limit.
+\end{abstract}
+
+\section{The Two Facts in Tension}
+
+Two facts lie on opposite sides of this construction.
+
+\paragraph{Fact 1: geometric constructibility.}
+For every power of two \(N\), the regular \(N\)-gon is constructible by compass
+and straightedge. Its half-perimeter,
+\[
+P_N=N\sin\!\left(\frac{\pi}{N}\right),
+\]
+is therefore a constructible real number. On the ladder
+\[
+N_i=4\cdot 2^i,
+\qquad i=0,1,2,\ldots,
+\]
+each \(P_{N_i}\) is obtained by repeated angle bisection and ordinary chord
+construction.
+
+\paragraph{Fact 2: the limiting value is not constructible.}
+The polygonal limit is
+\[
+\pi_g
+:=
+\lim_{i\to\infty}P_{N_i}
+=
+\pi.
+\]
+By Lindemann's theorem, \(\pi\) is transcendental and hence is not a
+constructible real number.
+
+That constructible approximants can approach a nonconstructible limit is not
+new; Archimedean polygons already do so. The question here is narrower:
+what happens when the constructible polygonal approximants are accelerated by
+an explicit rational recurrence that preserves constructibility at every
+finite stage?
+
+\section{The Acceleration Preserves Constructibility}
+
+\begin{remark}[No circular use of \(\pi\)]
+Although the analytic expression \(P_N=N\sin(\pi/N)\) contains \(\pi\), the
+geometric construction of \(P_N\) does not use \(\pi\) as input. It is one
+half of the perimeter of the regular \(N\)-gon inscribed in the unit circle.
+The displayed trigonometric expression is an analytic description of the
+constructed length.
+\end{remark}
+
+Set
+\[
+T_{i,0}=P_{N_i},
+\qquad
+N_i=4\cdot 2^i,
+\]
+and for \(1\le j\le i\), define
+\[
+T_{i,j}
+=
+T_{i,j-1}
++
+\frac{T_{i,j-1}-T_{i-1,j-1}}{4^j-1}.
+\]
+The denominators are
+\[
+4^j-1=3,15,63,255,\ldots,
+\]
+and \(T_{i,i}\) is the diagonal approximant.
+
+\begin{proposition}[Constructibility is preserved]
+Every tableau entry \(T_{i,j}\), and in particular every diagonal entry
+\(T_{i,i}\), is a constructible real number.
+\end{proposition}
+
+\begin{proof}
+Each base term \(T_{i,0}=P_{N_i}\) is constructible because \(N_i\) is a power
+of two. The recurrence uses only addition, subtraction, and division by the
+nonzero rational integer \(4^j-1\). The constructible real numbers form a
+field, so induction on \(j\) proves the claim.
+\end{proof}
+
+Thus the diagonal is an explicit tower of constructible numbers. Every finite
+approximant remains within a finite tower of quadratic extensions, even though
+the limiting value does not.
+
+\section{Interpolation Form of the Diagonal}
+
+Introduce
+\[
+x_i=N_i^{-2}=4^{-(i+2)}
+\]
+and define the entire function
+\[
+F(x)
+=
+\begin{cases}
+\dfrac{\sin(\pi\sqrt{x})}{\sqrt{x}},&x\ne0,\\[6pt]
+\pi,&x=0.
+\end{cases}
+\]
+Then
+\[
+F(x)
+=
+\sum_{m=0}^{\infty}
+(-1)^m\frac{\pi^{2m+1}}{(2m+1)!}x^m,
+\qquad
+F(x_i)=P_{N_i}.
+\]
+
+The recurrence is Neville--Richardson interpolation at \(x=0\). More
+precisely, \(T_{i,i}\) is the value at \(0\) of the degree-\(i\) polynomial
+interpolating \(F\) at
+\[
+x_0,x_1,\ldots,x_i.
+\]
+It therefore annihilates exactly the monomials
+\[
+x,x^2,\ldots,x^i,
+\]
+which correspond to the polygonal error terms
+\[
+N^{-2},N^{-4},\ldots,N^{-2i}.
+\]
+
+\begin{lemma}[Leading diagonal error]
+As \(i\to\infty\),
+\[
+\pi-T_{i,i}
+=
+\frac{\pi^{2i+3}}{(2i+3)!}
+\prod_{r=0}^{i}x_r
+\left(1+O(i^{-2})\right).
+\]
+Since
+\[
+\prod_{r=0}^{i}x_r
+=
+4^{-(i+1)(i+4)/2},
+\]
+this is equivalently
+\[
+\pi-T_{i,i}
+\sim
+\frac{\pi^{2i+3}}{(2i+3)!}\,
+4^{-(i+1)(i+4)/2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Interpolation is exact for all powers through \(x^i\). For the first omitted
+monomial \(x^{i+1}\), its interpolant at \(0\) equals
+\[
+(-1)^i\prod_{r=0}^{i}x_r.
+\]
+The coefficient of \(x^{i+1}\) in \(F\) is
+\[
+(-1)^{i+1}\frac{\pi^{2i+3}}{(2i+3)!},
+\]
+so the leading contribution to \(\pi-T_{i,i}\) is the positive quantity
+displayed above.
+
+For the remaining Taylor terms, the complete homogeneous symmetric
+polynomials in \(x_0,\ldots,x_i\) are bounded by powers of
+\[
+\sum_{r=0}^{i}x_r<\sum_{r=0}^{\infty}4^{-(r+2)}=\frac1{12}.
+\]
+Successive Taylor coefficients have ratio
+\[
+\frac{\pi^2}{(2m+2)(2m+3)}=O(i^{-2})
+\]
+when \(m\ge i+1\). Hence the entire tail is \(O(i^{-2})\) relative to the
+leading omitted term.
+\end{proof}
+
+\begin{definition}[Geometric circle constant]
+The accelerated constructible tower defines
+\[
+\pi_g
+:=
+\lim_{i\to\infty}T_{i,i}.
+\]
+The preceding lemma shows directly that
+\[
+\pi_g=\pi.
+\]
+\end{definition}
+
+The notation \(\pi_g\) names the geometric route to the classical circle
+constant; it does not denote a numerically different constant.
+
+\section{Digit Growth}
+
+Let
+\[
+D(i)
+=
+-\log_{10}\lvert T_{i,i}-\pi\rvert.
+\]
+The leading-error formula gives
+\[
+D(i)
+=
+\frac{(i+1)(i+4)}{2}\log_{10}4
++
+\log_{10}\bigl((2i+3)!\bigr)
+-
+(2i+3)\log_{10}\pi
++
+o(1).
+\]
+Using Stirling's formula,
+\[
+D(i)
+=
+(\log_{10}2)i^2
++
+2i\log_{10}i
++
+O(i).
+\]
+Therefore,
+\[
+\boxed{
+\frac{D(i)}{i^2}
+\longrightarrow
+\log_{10}2
+\approx0.3010299957
+}.
+\]
+
+The quadratic term comes from the geometric product of the interpolation
+nodes. The positive \(2i\log_{10}i\) correction comes from the factorial
+decay of the sine-series coefficient. At accessible levels this correction is
+still substantial, so \(D(i)/i^2\) remains above its limiting value.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{rrrr}
+\toprule
+Level \(i\) & \(N_i=4\cdot2^i\) & Correct digits \(D(i)\) & \(D(i)/i^2\)\\
+\midrule
+5  & 128        & 19.59  & 0.78355\\
+10 & 4096       & 57.34  & 0.57337\\
+15 & 131072     & 112.05 & 0.49798\\
+20 & 4194304    & 183.12 & 0.45781\\
+25 & 134217728  & 270.26 & 0.43241\\
+30 & 4294967296 & 373.26 & 0.41474\\
+\bottomrule
+\end{tabular}
+\caption{Diagonal of the constructible tower, computed with 600-digit
+arithmetic. The ratio decreases toward \(\log_{10}2\), not toward
+\(2\log_{10}2\).}
+\label{tab:tower}
+\end{table}
+
+\section{What the Construction Means}
+
+\begin{claimbox}{The claim}
+There exists an explicit sequence of compass-and-straightedge constructible
+real numbers generated from the Archimedean doubling ladder by the rational
+recurrence
+\[
+T_{i,j}
+=
+T_{i,j-1}
++
+\frac{T_{i,j-1}-T_{i-1,j-1}}{4^j-1}.
+\]
+Every finite \(T_{i,i}\) is constructible, while
+\[
+\lim_{i\to\infty}T_{i,i}
+=
+\pi_g
+=
+\pi.
+\]
+The diagonal has unbounded increasing order, and its correct-digit count obeys
+\[
+D(i)
+=
+(\log_{10}2)i^2
++
+2i\log_{10}i
++
+O(i).
+\]
+\end{claimbox}
+
+\begin{claimbox}{What is not claimed}
+The construction does not make \(\pi\) constructible, cross the
+constructible/transcendental boundary, outperform modular-form algorithms in
+arithmetic complexity, or introduce a new extrapolation method.
+Richardson--Romberg acceleration of an even-power sequence is classical.
+The contribution is the explicit constructible provenance of every finite
+entry and the transparent approach to a boundary that the limit cannot cross.
+\end{claimbox}
+
+\section{Conclusion}
+
+The tower is geometric at its base, algebraic in its acceleration, and
+analytic only in the verification of its limit and rate. Every finite
+approximant is constructible; the recurrence uses only rational operations;
+and the limiting value is the geometric circle constant
+\[
+\pi_g=\pi.
+\]
+The boundary between constructible approximants and the transcendental limit
+is therefore honored exactly. The tower approaches that boundary with
+increasing order but never reaches it at any finite stage.
+
+\begin{thebibliography}{9}
+
+\bibitem{archimedes}
+Archimedes,
+\emph{Measurement of a Circle}.
+
+\bibitem{wantzel}
+P.-L. Wantzel,
+``Recherches sur les moyens de reconnaître si un problème de géométrie peut
+se résoudre avec la règle et le compas,''
+\emph{Journal de Mathématiques Pures et Appliquées}, 2 (1837), 366--372.
+
+\bibitem{lindemann}
+F. Lindemann,
+``Über die Zahl \(\pi\),''
+\emph{Mathematische Annalen}, 20 (1882), 213--225.
+
+\bibitem{richardson}
+L. F. Richardson,
+``The approximate arithmetical solution by finite differences of physical
+problems,''
+\emph{Philosophical Transactions of the Royal Society A}, 210 (1911),
+307--357.
+
+\bibitem{romberg}
+W. Romberg,
+``Vereinfachte numerische Integration,''
+\emph{Det Kongelige Norske Videnskabers Selskab Forhandlinger}, 28 (1955),
+30--36.
+
+\end{thebibliography}
+
+\end{document}

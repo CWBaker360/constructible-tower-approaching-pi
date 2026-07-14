@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use or discuss this work, please cite it using the metadata below."
+title: "A Constructible Tower Approaching Pi"
+type: article
+authors:
+  - family-names: Baker
+    given-names: C. Wayne
+date-released: 2026-05-24
+version: revised-preprint-v1
+repository-code: "https://github.com/CWBaker360/constructible-tower-approaching-pi"
+url: "https://github.com/CWBaker360/constructible-tower-approaching-pi"
+abstract: >-
+  An explicit compass-and-straightedge constructible polygonal tower,
+  accelerated by a rational Richardson-Romberg recurrence, approaches the
+  nonconstructible limit pi. The revised analysis derives the diagonal error
+  and the corrected quadratic digit-growth coefficient log10(2).
+keywords:
+  - constructible numbers
+  - compass and straightedge
+  - pi
+  - polygonal approximation
+  - Richardson extrapolation
+  - Romberg extrapolation
+  - geometric approximation
+license: proprietary
