@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.3 — 2026-10-24
+
+- Replaced the repository manuscript source and PDF with the reviewed v1.3 files.
+- Sharpened the digit-growth asymptotic with the constant and inverse-level term; added a numerical residual table and AI-assistance disclosure.
+- Preserved the prior repository state under the `pre-v1.3-backup` tag.
+- Release checksum manifest regeneration and source-to-PDF build verification are pending.
+
 ## revised-preprint-v1 — 2026-05-24
 
 - Reconstructed the missing LaTeX source from the surviving four-page PDF.
