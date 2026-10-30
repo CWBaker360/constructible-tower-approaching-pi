@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtcolorbox{claimbox}[1]{colback=gray!4,colframe=black!65,title=\textbf{#1},fonttitle=\bfseries,boxrule=0.6pt,arc=1pt}
+\title{\textbf{A Constructible Tower Approaching $\pi$}\\\large Explicit Compass-and-Straightedge Approximants under Transparent Algebraic Acceleration}
+\author{C. Wayne Baker}
+\date{Original: May 24, 2026\\Revised v1.3: October 29, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We exhibit an explicit sequence of compass-and-straightedge constructible real numbers approaching $\pi_g=\pi$, although the limit itself is not constructible. The Archimedean half-perimeter $P_N=N\sin(\pi/N)$ is sampled on $N_i=4\cdot2^i$, and its values are combined using classical Richardson--Romberg extrapolation
+\[
+T_{i,0}=P_{N_i},\qquad T_{i,j}=T_{i,j-1}+\frac{T_{i,j-1}-T_{i-1,j-1}}{4^j-1}.
+\]
+Every finite tableau entry remains constructible. The diagonal has leading error
+\[
+\pi-T_{i,i}=\frac{\pi^{2i+3}}{(2i+3)!}\,4^{-(i+1)(i+4)/2}\bigl(1+O(i^{-2})\bigr)
+\]
+and correct-digit count
+\[
+D(i)=(\log_{10}2)i^2+2i\log_{10}i+c_1i+\tfrac72\log_{10}i+O(1),\quad
+c_1=7\log_{10}2-2\log_{10}(\pi e).
+\]
+The refined residual obeys $i^2R_i\to(\pi^2/48-7/4)/\ln 10$, where $R_i$ is defined after Proposition~\ref{prop:digits}. The increasing formal cancellation order does not imply an arithmetic speed record: the full triangular tableau uses $i(i+1)/2$ rational extrapolation updates, in addition to $i$ geometric bisection levels. The contribution is the transparent constructible provenance, interpolation error law, and separation between finite algebraic approximants and a transcendental limit.
+\end{abstract}
+\section{The two facts in tension}
+Following the classical inscribed-polygon approach of Archimedes~\cite{archimedes}, for a regular $N$-gon inscribed in the unit circle, the half-perimeter $P_N=N\sin(\pi/N)$ is constructible when $N$ is a power of two. Set $N_i=4\cdot2^i$, $i\ge0$. Repeated bisection constructs each base length without using the numerical value of $\pi$. The limit is $\pi_g:=\lim_{i\to\infty}P_{N_i}=\pi$. Lindemann's theorem~\cite{lindemann} implies that $\pi$ is transcendental and therefore not compass-and-straightedge constructible. Approaching a nonconstructible limit through constructible finite objects is classical; our narrower interest is the explicit effect of rational extrapolation on this ladder.
+\section{The acceleration preserves constructibility}
+Using the classical Richardson--Romberg extrapolation framework~\cite{richardson,romberg}, define $T_{i,0}=P_{N_i}$ and, for $1\le j\le i$,
+\[
+T_{i,j}=T_{i,j-1}+\frac{T_{i,j-1}-T_{i-1,j-1}}{4^j-1}.
+\]
+The rational denominators begin $3,15,63,255,\ldots$.
+\begin{proposition}[Preservation of constructibility]
+Every $T_{i,j}$, in particular every diagonal $T_{i,i}$, is a constructible real number.
+\end{proposition}
+\begin{proof}
+Each base half-perimeter $P_{N_i}$ is constructible by repeated angle bisection. The constructible real numbers form a field; the tableau uses only addition, subtraction, and division by nonzero rational integers. Induction on $j$ completes the proof.
+\end{proof}
+\begin{remark}[No circular use of $\pi$]
+The trigonometric formula describes a length already constructed from the unit circle. It does not provide $\pi$ as an input to the construction.
+\end{remark}
+\section{Interpolation form and diagonal error}
+Put $x_i=N_i^{-2}=4^{-(i+2)}$ and define the entire function
+\[
+F(x)=\begin{cases}\sin(\pi\sqrt x)/\sqrt x,&x\ne0,\\ \pi,&x=0.\end{cases}
+=\sum_{m=0}^{\infty}(-1)^m\frac{\pi^{2m+1}}{(2m+1)!}x^m.
+\]
+Then $F(x_i)=P_{N_i}$. The recurrence is Neville--Richardson interpolation: $T_{i,i}$ is the value at $0$ of the polynomial interpolating $F$ at $x_0,\ldots,x_i$. Thus it annihilates the terms $x,\ldots,x^i$, equivalently $N^{-2},\ldots,N^{-2i}$.
+\begin{lemma}[Leading diagonal error]
+As $i\to\infty$,
+\[
+\pi-T_{i,i}=\frac{\pi^{2i+3}}{(2i+3)!}\prod_{r=0}^{i}x_r\bigl(1+O(i^{-2})\bigr)
+=\frac{\pi^{2i+3}}{(2i+3)!}4^{-(i+1)(i+4)/2}\bigl(1+O(i^{-2})\bigr).
+\]
+In particular the diagonal eventually approaches $\pi$ from below.
+\end{lemma}
+\begin{proof}
+For the degree-$i$ interpolant $I_i$ at the distinct nodes $x_0,\ldots,x_i$, Newton's divided-difference error formula for the monomial $x^{i+1+k}$ gives
+\[
+I_i[x^{i+1+k}](0)=(-1)^i\Bigl(\prod_{r=0}^i x_r\Bigr)
+ h_k(x_0,\ldots,x_i),\qquad k\ge0,
+\]
+where $h_k$ denotes the complete homogeneous symmetric polynomial and $h_0=1$. In particular, the interpolant of $x^{i+1}$ at $0$ is $(-1)^i\prod_{r=0}^ix_r$. Its Taylor coefficient in $F$ is $(-1)^{i+1}\pi^{2i+3}/(2i+3)!$, giving a positive contribution to $F(0)-T_{i,i}$. For later powers the complete homogeneous symmetric polynomials are bounded by $h_k(x_0,\ldots,x_i)\le(\sum_{r=0}^ix_r)^k$, with $\sum_{r=0}^ix_r<1/12$. The absolute ratios of successive Taylor coefficients are $\pi^2/((2m+2)(2m+3))=O(i^{-2})$ for $m\ge i+1$. More precisely, linearity and absolute convergence of the Taylor series yield the exact error representation
+\begin{equation}\label{eq:exact-diagonal-error}
+\pi-T_{i,i}=
+\frac{\pi^{2i+3}}{(2i+3)!}\prod_{r=0}^ix_r
+\sum_{k=0}^{\infty}(-1)^k h_k(x_0,\ldots,x_i)\pi^{2k}
+\frac{(2i+3)!}{(2i+3+2k)!}.
+\end{equation}
+Let $S_i=\sum_{r=0}^ix_r=(1-4^{-(i+1)})/12<1/12$.
+Since $h_k\le S_i^k$, the sum of terms $k\ge2$ in the normalized series is $O(i^{-4})$: each such term is bounded by
+$[\pi^2S_i/((2i+4)(2i+5))]^k$, and these bounds form a geometric tail for sufficiently large $i$. The $k=1$ term is
+\[
+-\frac{\pi^2S_i}{(2i+4)(2i+5)}
+=-\frac{\pi^2}{48i^2}+O(i^{-3}).
+\]
+Thus the normalized factor in \eqref{eq:exact-diagonal-error} equals
+$1-\pi^2/(48i^2)+O(i^{-3})$, in particular $1+O(i^{-2})$. Finally $\prod_{r=0}^ix_r=4^{-\sum_{r=0}^i(r+2)}=4^{-(i+1)(i+4)/2}$.
+\end{proof}
+\begin{definition}[Geometric circle constant]
+The accelerated tower defines $\pi_g:=\lim_{i\to\infty}T_{i,i}=\pi$. The subscript records the geometric approximation pathway, not a distinct number.
+\end{definition}
+\section{Sharper digit asymptotics}
+Write $D(i)=-\log_{10}|\pi-T_{i,i}|$. The lemma yields
+\[
+D(i)=\frac{(i+1)(i+4)}2\log_{10}4+\log_{10}\bigl((2i+3)!\bigr)-(2i+3)\log_{10}\pi+O(i^{-2}).
+\]
+\begin{proposition}[Digit-growth law with explicit constant]\label{prop:digits}
+\[
+\begin{aligned}
+D(i)={}&(\log_{10}2)i^2+2i\log_{10}i+c_1i+\tfrac72\log_{10}i\\
+&+K+\frac{73\log_{10}e}{24i}+O(i^{-2}),\\
+c_1={}&7\log_{10}2-2\log_{10}(\pi e),\\
+K={}&8\log_{10}2-\tfrac52\log_{10}\pi\approx1.16536528.
+\end{aligned}
+\]
+Consequently $D(i)/i^2\to\log_{10}2$. Moreover, with
+\[
+R_i:=D(i)-\left[(\log_{10}2)i^2+2i\log_{10}i+c_1i+
+\tfrac72\log_{10}i+K+\frac{73\log_{10}e}{24i}\right],
+\]
+we have the explicit limiting residual
+\begin{equation}\label{eq:residual-limit}
+R_i=\frac{\pi^2/48-7/4}{i^2\ln 10}+O(i^{-3}),\qquad
+\lim_{i\to\infty}i^2R_i=\frac{\pi^2/48-7/4}{\ln 10}
+\approx-0.6707171197898333.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The geometric-node exponent is $(i+1)(i+4)=i^2+5i+4$ in base $2$. The logarithmic Stirling expansion through inverse order is
+\[
+\begin{aligned}
+\log((2i+3)!)={}&(2i+\tfrac72)\log i+2i\log2-2i\\
+&+\tfrac72\log2+\tfrac12\log(2\pi)
++\frac{73}{24i}+O(i^{-2}).
+\end{aligned}
+\]
+Substituting this into the preceding expression for $D(i)$, the node-product contribution $(i^2+5i+4)\log_{10}2$, and $-(2i+3)\log_{10}\pi$ gives the stated linear coefficient, constant and inverse-order term. To obtain the next coefficient, the Stirling expansion one order further gives
+\[
+\begin{aligned}
+\log((2i+3)!)={}&(2i+\tfrac72)\log i+2i\log 2-2i
++\tfrac72\log 2+\tfrac12\log(2\pi)\\
+&+\frac{73}{24i}-\frac{7}{4i^2}+O(i^{-3}).
+\end{aligned}
+\]
+The integral-form Stirling remainder after the $1/(12z)$ term is bounded in absolute value by $1/(360z^3)$ for $z=2i+3>0$; it does not affect the $i^{-2}$ coefficient. From \eqref{eq:exact-diagonal-error}, the correction to the logarithmic digit count is
+$-\log_{10}(1-\pi^2/(48i^2)+O(i^{-3}))
+=\pi^2/(48i^2\ln 10)+O(i^{-3})$.
+Combining it with the $-7/(4i^2)$ Stirling term proves \eqref{eq:residual-limit}.
+\end{proof}
+The $2i\log_{10}i$ and lower-order terms explain why accessible ratios $D(i)/i^2$ remain above their limiting constant.
+\begin{table}[ht]\centering\small
+\begin{tabular}{rrrr}\toprule Level $i$ & $N_i=4\cdot2^i$ & Correct digits $D(i)$ & $D(i)/i^2$\\\midrule
+5&128&19.59&0.78355\\10&4096&57.34&0.57337\\15&131072&112.05&0.49798\\20&4194304&183.12&0.45781\\25&134217728&270.26&0.43241\\30&4294967296&373.26&0.41474\\\bottomrule\end{tabular}
+\caption{Original diagonal data obtained using 600-digit arithmetic; an AI-assisted 700-digit recomputation reproduced the stated rounding.}\label{tab:tower}
+\end{table}
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{rrrr}
+\toprule
+$i$ & $D(i)$ & $R_i$ & $i^2R_i$\\
+\midrule
+5  & 19.5886515 & $-0.0243609$ & $-0.6090$\\
+10 & 57.3372619 & $-0.00641350$ & $-0.6413$\\
+15 & 112.046159 & $-0.00289698$ & $-0.6518$\\
+20 & 183.123000 & $-0.00164218$ & $-0.6569$\\
+25 & 270.258718 & $-0.00105571$ & $-0.6598$\\
+30 & 373.262496 & $-0.000735272$ & $-0.6617$\\
+\bottomrule
+\end{tabular}
+\caption{Numerical check of the inverse-order refinement. Here
+$R_i=D(i)-[(\log_{10}2)i^2+2i\log_{10}i+c_1i+
+\tfrac72\log_{10}i+K+(73\log_{10}e)/(24i)]$.
+Values were recomputed using a 650-decimal-digit \texttt{mpmath} tableau.
+The theorem establishes $i^2R_i\to(\pi^2/48-7/4)/\ln 10\approx-0.6707171198$, with $i^2R_i=(\pi^2/48-7/4)/\ln 10+O(i^{-1})$; the finite rows illustrate this convergence rather than proving it.}
+\label{tab:digits-residual}
+\end{table}
+
+\section{Order, operation count, and numerical conditioning}
+For each fixed $i$, the diagonal polynomial cancels through $N^{-2i}$; formally its first surviving asymptotic term has order $N^{-2i-2}$. The term ``unbounded order'' refers to this growing sequence of cancellation orders, not a fixed-cost infinite-order algorithm.
+Constructing the ladder through $N_i$ requires $i$ additional bisection levels beyond the square. Populating the full lower triangular tableau requires exactly $1+2+\cdots+i=i(i+1)/2$ extrapolation updates and $i+1$ base values. These are counts of algebraic operations at growing precision, not a count of physical straightedge-and-compass moves. Since $D(i)\sim(\log_{10}2)i^2$, the asymptotic index satisfies $i\sim\sqrt{D/\log_{10}2}$ and the number of updates is $\sim D/(2\log_{10}2)$; bit complexity also depends on the working precision and the representation of constructible numbers. These observations do not establish superiority over direct polygonal doubling or modern algorithms for $\pi$.
+The extrapolation uses the classical base-two Richardson weights (recurrence denominators $4^j-1$). A companion scale-optimized N-series stability study reports an aggregate absolute-weight limit $S_2\approx1.969$ for the base-two coefficients~\cite{bakerstability}; this contextualizes, but does not certify, finite-precision stability. The numerical stability of a particular finite-precision implementation must be considered separately from algebraic constructibility; a global limiting weight norm should not be interpreted as a complete floating-point error bound.
+\section{AI-assistance and numerical provenance}
+The author directed the study and retains responsibility for the mathematical claims. ChatGPT assisted with LaTeX revision, symbolic Stirling calculations, high-precision residual-table recomputation and manuscript preparation. Claude assisted by independently recomputing the diagonal table at 700-digit working precision, examining the interpolation-tail and Stirling argument, and reporting a 1500-digit numerical tableau through level 60 for the residual limit. These are AI-assisted checks, not an independent human peer review; the original table was reported from a 600-digit calculation. This v1.3 revision adds the analytic residual-limit proof and updates its interpretation of Table 2; the original tabulated values are preserved.
+\section{Claim boundary and conclusion}
+\begin{claimbox}{Established claim}
+Every finite $T_{i,i}$ is constructible and $T_{i,i}\to\pi_g=\pi$, with the explicit diagonal error law and sharpened digit-growth asymptotic, the explicit inverse-square residual limit in \eqref{eq:residual-limit}, and the claimed error bounds given above.
+\end{claimbox}
+\begin{claimbox}{Not claimed}
+The construction neither makes $\pi$ constructible nor gives a new extrapolation method or a competitive arithmetic speed record. Richardson--Romberg cancellation is classical~\cite{richardson,romberg,brezinski}. The distinction from exact general angle trisection is consistent with Wantzel's constructibility obstruction~\cite{wantzel}. No historical priority is asserted for applying such tabulations to Archimedean polygon sequences.
+\end{claimbox}
+The tower is geometric at its base, algebraic in its acceleration, and analytic in its verification. It approaches the transcendental limit without crossing the classical constructibility boundary at any finite stage.
+\begin{thebibliography}{12}
+\bibitem{bakerstability} C. W. Baker, \emph{Scale-Optimized N-Series Acceleration}, Zenodo (2026), DOI: \href{https://doi.org/10.5281/zenodo.22819869}{10.5281/zenodo.22819869} (companion analysis of extrapolation weights).
+\bibitem{brezinski} C. Brezinski, ``Convergence acceleration during the 20th century,'' \emph{J. Comput. Appl. Math.} \textbf{122} (2000), 1--21. This historical survey documents the earlier Bauer--Stiefel--Rutishauser extrapolation literature, without establishing priority for this particular polygonal tableau.
+\bibitem{archimedes} Archimedes, \emph{Measurement of a Circle}.
+\bibitem{wantzel} P.-L. Wantzel, ``Recherches sur les moyens de reconna\^itre si un probl\`eme de g\'eom\'etrie peut se r\'esoudre avec la r\`egle et le compas,'' \emph{J. Math. Pures Appl.} 2 (1837), 366--372.
+\bibitem{lindemann} F. Lindemann, ``\"Uber die Zahl $\pi$,'' \emph{Math. Ann.} 20 (1882), 213--225.
+\bibitem{richardson} L. F. Richardson, ``The approximate arithmetical solution by finite differences of physical problems,'' \emph{Phil. Trans. Roy. Soc. A} 210 (1911), 307--357.
+\bibitem{romberg} W. Romberg, ``Vereinfachte numerische Integration,'' \emph{Det Kongelige Norske Videnskabers Selskab Forhandlinger} 28 (1955), 30--36.
+\end{thebibliography}
+\end{document}
