@@ -96,3 +96,8 @@ Copyright © 2026 C. Wayne Baker. All rights reserved unless otherwise stated.
 ## Manuscript review status (October 24, 2026)
 
 The PDF and LaTeX files currently in `paper/` are the repository's existing published/preprint versions. A subsequent editorial and mathematical review has identified proposed clarifications for a future revision. Those revisions have **not** been merged into this repository, and the current PDF must not be described as incorporating them. Existing numerical verification scripts and results are unchanged. A revised source/PDF pair will be considered separately after a source-to-PDF consistency check and further mathematical review. This status notice makes no new scientific or priority claim.
+
+
+## October 30, 2026 source update (PDF synchronization pending)
+
+The reviewed October 29, 2026 manuscript source (v1.3) is now at [`paper/constructible_tower_v1_3.tex`](paper/constructible_tower_v1_3.tex). This versioned source was added without modifying the existing authoritative `paper/` LaTeX/PDF pair. The companion v1.3 PDF has **not yet been uploaded**, so links to the existing PDF still point to the previous version. Do not cite that PDF as v1.3 until the matched PDF is committed.
