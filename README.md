@@ -17,12 +17,18 @@ This repository contains:
 These are the current reviewed manuscript files. The earlier `paper/constructible_tower_approaching_pi.*` pair and original concept PDF are retained as historical versions. The v1.3 update does not by itself constitute independent peer review.
 
 
-## Zenodo release preparation
+## Zenodo publication — November 10, 2026
 
-The version-specific release checklist, metadata and package selection are in
-[`ZENODO_V1_3_RELEASE_HANDOFF.md`](ZENODO_V1_3_RELEASE_HANDOFF.md).
-The Zenodo DOI is not yet assigned or asserted. The old repository-wide checksum
-manifest must not be treated as a validated hash set for the current checkout.
+**Published DOI:** [10.5281/zenodo.24109048](https://doi.org/10.5281/zenodo.24109048)  
+**Version:** v1.3  
+**Original manuscript date:** May 24, 2026  
+**Revision date shown in manuscript:** October 29, 2026
+
+The deposit contains the five-page v1.3 PDF and its reproducibility ZIP with a
+release-specific SHA-256 manifest. The manuscript source/PDF were not changed
+for this postpublication metadata update. The [release handoff](ZENODO_V1_3_RELEASE_HANDOFF.md)
+remains as historical preparation documentation. The older repository-wide
+checksum manifest does not certify this current Git checkout.
 
 ## Earlier manuscript files (retained)
 
