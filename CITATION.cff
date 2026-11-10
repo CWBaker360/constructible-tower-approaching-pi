@@ -5,10 +5,11 @@ type: article
 authors:
   - family-names: Baker
     given-names: C. Wayne
-date-released: 2026-10-24
+date-released: 2026-11-10
 version: v1.3
+doi: 10.5281/zenodo.24109048
 repository-code: "https://github.com/CWBaker360/constructible-tower-approaching-pi"
-url: "https://github.com/CWBaker360/constructible-tower-approaching-pi"
+url: "https://doi.org/10.5281/zenodo.24109048"
 abstract: >-
   An explicit compass-and-straightedge constructible polygonal tower,
   accelerated by a rational Richardson-Romberg recurrence, approaches the
