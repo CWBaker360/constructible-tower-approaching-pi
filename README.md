@@ -17,6 +17,13 @@ This repository contains:
 These are the current reviewed manuscript files. The earlier `paper/constructible_tower_approaching_pi.*` pair and original concept PDF are retained as historical versions. The v1.3 update does not by itself constitute independent peer review.
 
 
+## Zenodo release preparation
+
+The version-specific release checklist, metadata and package selection are in
+[`ZENODO_V1_3_RELEASE_HANDOFF.md`](ZENODO_V1_3_RELEASE_HANDOFF.md).
+The Zenodo DOI is not yet assigned or asserted. The old repository-wide checksum
+manifest must not be treated as a validated hash set for the current checkout.
+
 ## Earlier manuscript files (retained)
 
 - [`paper/constructible_tower_approaching_pi.pdf`](paper/constructible_tower_approaching_pi.pdf)
@@ -95,8 +102,9 @@ The originally supplied four-page PDF is retained at:
 docs/original_may24_concept_version.pdf
 ```
 
-It is included for provenance only. The revised LaTeX/PDF pair in `paper/` is
-the authoritative version.
+It is included for provenance only. The authoritative v1.3 pair is specifically
+`paper/constructible_tower_v1_3.tex` and
+`paper/constructible_tower_v1_3.pdf`.
 
 ## Rights
 
