@@ -1,5 +1,15 @@
 # Changelog
 
+## Zenodo deposit — 2026-11-10
+
+- Author confirmed publication of v1.3 on Zenodo: https://doi.org/10.5281/zenodo.24109048.
+- The five-page v1.3 PDF and accompanying reproducibility ZIP were deposited.
+- Local 650-digit numerical audit, rebuild/text comparison, and nine-file ZIP
+  SHA-256 verification passed before the deposit.
+- Citation and README metadata updated without changing the original manuscript,
+  PDF, verification code, or archived scientific outputs.
+
+
 ## v1.3 — 2026-10-24
 
 - Replaced the repository manuscript source and PDF with the reviewed v1.3 files.
